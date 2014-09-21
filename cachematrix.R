@@ -15,10 +15,10 @@
 makeCacheMatrix <- function(x = matrix()) {
         invX <- NULL
         
-        ## Set/update the cache if 'x' is not same as 'y' 
+        ## Set/update the cache if 'x' has changed 
         set <- function(y) {
                 if (!identical(x,y)) {
-                        ## x' is not same as 'y'
+                        ## 'x' is not same as 'y'
                         x <<- y
                         invX <<- NULL
                 }
@@ -54,12 +54,12 @@ cacheSolve <- function(x, ...) {
         ## Checks if inverse of 'x' is present in cache or not
         if(!is.null(invX)) {
                 ## Inverse of 'x' is present in cache
-                message("getting cached data")
+                message("Getting cached data")
                 return(invX)
         }
 
         ## Inverse of 'x' is not present in cache
-        ## Following lines will compute matrix inverse then store it in cache
+        ## Following line will compute the inverse of matrix
         invX <- solve(data, ...)
         x$setinverse(invX)
         invX
